@@ -36,7 +36,9 @@ const ParticlesBackground = () => {
               enable: true,
               mode: "repulse",
             },
-            resize: true,
+            resize: {
+              enable: true,
+            },
           },
           modes: {
             push: {
