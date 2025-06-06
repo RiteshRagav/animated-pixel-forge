@@ -1,4 +1,3 @@
-
 import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
@@ -16,15 +15,15 @@ const HeroSection = () => {
           <pointLight position={[-10, -10, -5]} intensity={0.4} color="#8b5cf6" />
           
           <Suspense fallback={null}>
-            <Float speed={1.2} rotationIntensity={0.3} floatIntensity={0.8}>
+            <Float speed={2} rotationIntensity={0.6} floatIntensity={1.2}>
               <NetworkSphere position={[0, 0, 0]} count={1200} />
             </Float>
             
-            <Float speed={0.8} rotationIntensity={0.2} floatIntensity={0.6}>
+            <Float speed={1.5} rotationIntensity={0.8} floatIntensity={1}>
               <NetworkSphere position={[6, 2, -4]} count={600} />
             </Float>
             
-            <Float speed={1.5} rotationIntensity={0.4} floatIntensity={1}>
+            <Float speed={2.5} rotationIntensity={1} floatIntensity={1.5}>
               <NetworkSphere position={[-5, -2, -3]} count={400} />
             </Float>
             
@@ -35,7 +34,7 @@ const HeroSection = () => {
               factor={3} 
               saturation={0.3} 
               fade 
-              speed={0.3}
+              speed={0.8}
             />
           </Suspense>
           
@@ -43,9 +42,7 @@ const HeroSection = () => {
             enableZoom={false} 
             enablePan={false} 
             autoRotate 
-            autoRotateSpeed={0.3}
-            maxPolarAngle={Math.PI / 2}
-            minPolarAngle={Math.PI / 2}
+            autoRotateSpeed={1.5}
           />
         </Canvas>
       </div>
@@ -82,21 +79,12 @@ const HeroSection = () => {
               Ritesh Ragav
             </motion.h1>
             
-            {/* Main name text */}
+            {/* Main name text - fixed color */}
             <motion.h1
-              className="text-5xl md:text-8xl font-bold relative"
+              className="text-5xl md:text-8xl font-bold relative text-blue-400"
               style={{
-                background: 'linear-gradient(45deg, #60a5fa, #a78bfa, #34d399, #fbbf24)',
-                backgroundSize: '300% 300%',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))',
+                filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.4))',
               }}
-              animate={{
-                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-              }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             >
               Ritesh Ragav
             </motion.h1>
