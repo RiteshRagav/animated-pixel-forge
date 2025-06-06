@@ -64,30 +64,25 @@ const HeroSection = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            {/* Background text shadow for depth */}
+            {/* Main "Hi I am," text */}
             <motion.h1
-              className="text-5xl md:text-8xl font-bold text-white/10 absolute inset-0 blur-sm"
-              animate={{ 
-                textShadow: [
-                  "0 0 20px rgba(59, 130, 246, 0.3)",
-                  "0 0 40px rgba(139, 92, 246, 0.3)",
-                  "0 0 20px rgba(59, 130, 246, 0.3)",
-                ]
+              className="text-6xl md:text-9xl font-bold text-white mb-4"
+              style={{
+                filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.2))',
               }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
-              Ritesh Ragav
+              Hi I am,
             </motion.h1>
             
-            {/* Main name text - fixed color */}
-            <motion.h1
-              className="text-5xl md:text-8xl font-bold relative text-blue-400"
+            {/* Name text - smaller size */}
+            <motion.h2
+              className="text-4xl md:text-6xl font-bold text-blue-400"
               style={{
                 filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.4))',
               }}
             >
               Ritesh Ragav
-            </motion.h1>
+            </motion.h2>
             
             {/* Decorative underline */}
             <motion.div
