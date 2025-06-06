@@ -1,14 +1,8 @@
 
-import React, { useCallback } from 'react';
+import React from 'react';
 import Particles from '@tsparticles/react';
-import { loadSlim } from 'tsparticles-slim';
-import type { Engine } from 'tsparticles-engine';
 
 const ParticlesBackground = () => {
-  const particlesInit = useCallback(async (engine: Engine) => {
-    await loadSlim(engine);
-  }, []);
-
   return (
     <Particles
       id="tsparticles"
@@ -74,8 +68,10 @@ const ParticlesBackground = () => {
             straight: false,
             attract: {
               enable: true,
-              rotateX: 600,
-              rotateY: 1200,
+              rotate: {
+                x: 600,
+                y: 1200,
+              },
             },
           },
           number: {
@@ -104,10 +100,6 @@ const ParticlesBackground = () => {
               speed: 3,
               sync: false,
             },
-          },
-          glow: {
-            enable: true,
-            value: 10,
           },
         },
         detectRetina: true,
