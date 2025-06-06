@@ -36,7 +36,9 @@ const ParticlesBackground = () => {
               enable: true,
               mode: "repulse",
             },
-            resize: true,
+            resize: {
+              enable: true,
+            },
           },
           modes: {
             push: {
@@ -72,7 +74,7 @@ const ParticlesBackground = () => {
           number: {
             density: {
               enable: true,
-              area: 800,
+              value_area: 800,
             },
             value: 80,
           },
@@ -81,7 +83,7 @@ const ParticlesBackground = () => {
             animation: {
               enable: true,
               speed: 1,
-              minimumValue: 0.1,
+              min_value: 0.1,
             },
           },
           shape: {
@@ -92,7 +94,7 @@ const ParticlesBackground = () => {
             animation: {
               enable: true,
               speed: 2,
-              minimumValue: 1,
+              min_value: 1,
             },
           },
         },
