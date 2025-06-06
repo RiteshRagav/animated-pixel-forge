@@ -22,7 +22,7 @@ const ParticlesBackground = () => {
             },
             onHover: {
               enable: true,
-              mode: "grab",
+              mode: "connect",
             },
             resize: {
               enable: true,
@@ -30,49 +30,38 @@ const ParticlesBackground = () => {
           },
           modes: {
             push: {
-              quantity: 3,
+              quantity: 2,
             },
-            grab: {
-              distance: 200,
-              line_linked: {
-                opacity: 0.8,
+            connect: {
+              distance: 80,
+              links: {
+                opacity: 0.5,
               },
             },
           },
         },
         particles: {
           color: {
-            value: ["#3b82f6", "#8b5cf6", "#06b6d4", "#10b981", "#f59e0b"],
+            value: ["#3b82f6", "#8b5cf6", "#06b6d4"],
           },
           links: {
             color: {
               value: "#3b82f6",
             },
-            distance: 180,
+            distance: 150,
             enable: true,
-            opacity: 0.3,
-            width: 1.5,
-            triangles: {
-              enable: true,
-              opacity: 0.05,
-            },
+            opacity: 0.2,
+            width: 1,
           },
           move: {
             direction: "none",
             enable: true,
             outModes: {
-              default: "out",
+              default: "bounce",
             },
-            random: true,
-            speed: 1.5,
+            random: false,
+            speed: 1,
             straight: false,
-            attract: {
-              enable: true,
-              rotate: {
-                x: 600,
-                y: 1200,
-              },
-            },
           },
           number: {
             density: {
@@ -80,13 +69,13 @@ const ParticlesBackground = () => {
               width: 1920,
               height: 1080,
             },
-            value: 120,
+            value: 80,
           },
           opacity: {
-            value: { min: 0.3, max: 0.8 },
+            value: 0.5,
             animation: {
               enable: true,
-              speed: 2,
+              speed: 1,
               sync: false,
             },
           },
@@ -94,12 +83,7 @@ const ParticlesBackground = () => {
             type: "circle",
           },
           size: {
-            value: { min: 2, max: 6 },
-            animation: {
-              enable: true,
-              speed: 3,
-              sync: false,
-            },
+            value: { min: 1, max: 3 },
           },
         },
         detectRetina: true,

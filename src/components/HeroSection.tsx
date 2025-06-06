@@ -2,7 +2,7 @@
 import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Float, Stars, Sparkles } from '@react-three/drei';
+import { OrbitControls, Float, Stars } from '@react-three/drei';
 import NetworkSphere from './NetworkSphere';
 
 const HeroSection = () => {
@@ -11,39 +11,31 @@ const HeroSection = () => {
       {/* 3D Background */}
       <div className="absolute inset-0 z-0">
         <Canvas camera={{ position: [0, 0, 8], fov: 75 }}>
-          <ambientLight intensity={0.3} />
-          <pointLight position={[10, 10, 10]} intensity={0.5} />
-          <pointLight position={[-10, -10, -5]} intensity={0.3} color="#8b5cf6" />
+          <ambientLight intensity={0.4} />
+          <pointLight position={[10, 10, 10]} intensity={0.6} />
+          <pointLight position={[-10, -10, -5]} intensity={0.4} color="#8b5cf6" />
           
           <Suspense fallback={null}>
-            <Float speed={1.2} rotationIntensity={0.5} floatIntensity={1}>
-              <NetworkSphere position={[0, 0, 0]} count={1500} />
+            <Float speed={1.2} rotationIntensity={0.3} floatIntensity={0.8}>
+              <NetworkSphere position={[0, 0, 0]} count={1200} />
             </Float>
             
-            <Float speed={0.8} rotationIntensity={0.3} floatIntensity={0.8}>
-              <NetworkSphere position={[6, 2, -4]} count={800} />
+            <Float speed={0.8} rotationIntensity={0.2} floatIntensity={0.6}>
+              <NetworkSphere position={[6, 2, -4]} count={600} />
             </Float>
             
-            <Float speed={1.5} rotationIntensity={0.4} floatIntensity={1.2}>
-              <NetworkSphere position={[-5, -2, -3]} count={600} />
+            <Float speed={1.5} rotationIntensity={0.4} floatIntensity={1}>
+              <NetworkSphere position={[-5, -2, -3]} count={400} />
             </Float>
             
             <Stars 
               radius={100} 
               depth={50} 
-              count={3000} 
-              factor={4} 
-              saturation={0.5} 
+              count={2000} 
+              factor={3} 
+              saturation={0.3} 
               fade 
-              speed={0.5}
-            />
-            
-            <Sparkles 
-              count={100} 
-              scale={[10, 10, 10]} 
-              size={2} 
               speed={0.3}
-              opacity={0.6}
             />
           </Suspense>
           
@@ -51,60 +43,72 @@ const HeroSection = () => {
             enableZoom={false} 
             enablePan={false} 
             autoRotate 
-            autoRotateSpeed={0.5}
+            autoRotateSpeed={0.3}
             maxPolarAngle={Math.PI / 2}
             minPolarAngle={Math.PI / 2}
           />
         </Canvas>
       </div>
 
-      {/* Enhanced Animated Gradient Background */}
-      <div className="absolute inset-0 z-0">
-        <motion.div
-          className="w-full h-full"
-          style={{
-            background: `radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 60% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 50%)`,
-          }}
-          animate={{
-            background: [
-              `radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
-               radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
-               radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
-               radial-gradient(circle at 60% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 50%)`,
-              `radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
-               radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
-               radial-gradient(circle at 60% 60%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
-               radial-gradient(circle at 30% 30%, rgba(16, 185, 129, 0.1) 0%, transparent 50%)`,
-              `radial-gradient(circle at 40% 60%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
-               radial-gradient(circle at 60% 40%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
-               radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
-               radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%)`,
-            ],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
+      {/* Subtle Background Overlay */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-black/20 via-transparent to-black/30" />
 
       {/* Content */}
-      <div className="relative z-20 text-center px-4 max-w-4xl">
+      <div className="relative z-20 text-center px-4 max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          <motion.h1
-            className="text-4xl md:text-7xl font-bold text-white mb-6"
+          {/* Enhanced Name Display */}
+          <motion.div
+            className="relative mb-8"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+            {/* Background text shadow for depth */}
+            <motion.h1
+              className="text-5xl md:text-8xl font-bold text-white/10 absolute inset-0 blur-sm"
+              animate={{ 
+                textShadow: [
+                  "0 0 20px rgba(59, 130, 246, 0.3)",
+                  "0 0 40px rgba(139, 92, 246, 0.3)",
+                  "0 0 20px rgba(59, 130, 246, 0.3)",
+                ]
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
               Ritesh Ragav
-            </span>
-          </motion.h1>
+            </motion.h1>
+            
+            {/* Main name text */}
+            <motion.h1
+              className="text-5xl md:text-8xl font-bold relative"
+              style={{
+                background: 'linear-gradient(45deg, #60a5fa, #a78bfa, #34d399, #fbbf24)',
+                backgroundSize: '300% 300%',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))',
+              }}
+              animate={{
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            >
+              Ritesh Ragav
+            </motion.h1>
+            
+            {/* Decorative underline */}
+            <motion.div
+              className="mx-auto mt-4 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent"
+              initial={{ width: 0 }}
+              animate={{ width: "60%" }}
+              transition={{ duration: 1.5, delay: 1.5 }}
+            />
+          </motion.div>
           
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -112,7 +116,7 @@ const HeroSection = () => {
             transition={{ duration: 1, delay: 1.2 }}
             className="mb-8"
           >
-            <h2 className="text-xl md:text-3xl text-white/90 mb-4">
+            <h2 className="text-xl md:text-3xl text-white/90 mb-4 font-light tracking-wide">
               Full Stack Developer & Creative Technologist
             </h2>
             <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
@@ -128,10 +132,10 @@ const HeroSection = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <motion.button
-              className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold text-lg shadow-lg"
+              className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold text-lg shadow-2xl border border-white/20"
               whileHover={{ 
                 scale: 1.05,
-                boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)",
+                boxShadow: "0 25px 50px rgba(59, 130, 246, 0.4)",
               }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -140,7 +144,7 @@ const HeroSection = () => {
             </motion.button>
             
             <motion.button
-              className="px-8 py-4 border-2 border-white/30 rounded-full text-white font-semibold text-lg backdrop-blur-sm"
+              className="px-8 py-4 border-2 border-white/30 rounded-full text-white font-semibold text-lg backdrop-blur-sm bg-white/5"
               whileHover={{ 
                 scale: 1.05,
                 backgroundColor: "rgba(255, 255, 255, 0.1)",
