@@ -2,55 +2,89 @@
 import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Float, Text3D, Center } from '@react-three/drei';
-import FloatingCube from './FloatingCube';
+import { OrbitControls, Float, Stars, Sparkles } from '@react-three/drei';
+import NetworkSphere from './NetworkSphere';
 
 const HeroSection = () => {
   return (
     <div className="relative min-h-screen flex items-center justify-center z-10">
       {/* 3D Background */}
       <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} />
+        <Canvas camera={{ position: [0, 0, 8], fov: 75 }}>
+          <ambientLight intensity={0.3} />
+          <pointLight position={[10, 10, 10]} intensity={0.5} />
+          <pointLight position={[-10, -10, -5]} intensity={0.3} color="#8b5cf6" />
+          
           <Suspense fallback={null}>
-            <Float speed={1.4} rotationIntensity={1} floatIntensity={2}>
-              <FloatingCube position={[-3, 2, -2]} />
+            <Float speed={1.2} rotationIntensity={0.5} floatIntensity={1}>
+              <NetworkSphere position={[0, 0, 0]} count={1500} />
             </Float>
-            <Float speed={2} rotationIntensity={1.5} floatIntensity={1.5}>
-              <FloatingCube position={[3, -1, -1]} />
+            
+            <Float speed={0.8} rotationIntensity={0.3} floatIntensity={0.8}>
+              <NetworkSphere position={[6, 2, -4]} count={800} />
             </Float>
-            <Float speed={1.8} rotationIntensity={0.8} floatIntensity={2.5}>
-              <FloatingCube position={[0, 3, -3]} />
+            
+            <Float speed={1.5} rotationIntensity={0.4} floatIntensity={1.2}>
+              <NetworkSphere position={[-5, -2, -3]} count={600} />
             </Float>
+            
+            <Stars 
+              radius={100} 
+              depth={50} 
+              count={3000} 
+              factor={4} 
+              saturation={0.5} 
+              fade 
+              speed={0.5}
+            />
+            
+            <Sparkles 
+              count={100} 
+              scale={[10, 10, 10]} 
+              size={2} 
+              speed={0.3}
+              opacity={0.6}
+            />
           </Suspense>
-          <OrbitControls enableZoom={false} enablePan={false} />
+          
+          <OrbitControls 
+            enableZoom={false} 
+            enablePan={false} 
+            autoRotate 
+            autoRotateSpeed={0.5}
+            maxPolarAngle={Math.PI / 2}
+            minPolarAngle={Math.PI / 2}
+          />
         </Canvas>
       </div>
 
-      {/* Animated Gradient Background */}
+      {/* Enhanced Animated Gradient Background */}
       <div className="absolute inset-0 z-0">
         <motion.div
           className="w-full h-full"
           style={{
-            background: `radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)`,
+            background: `radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 60% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 50%)`,
           }}
           animate={{
             background: [
-              `radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-               radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-               radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)`,
-              `radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-               radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-               radial-gradient(circle at 60% 60%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)`,
-              `radial-gradient(circle at 40% 60%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-               radial-gradient(circle at 60% 40%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-               radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%)`,
+              `radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+               radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
+               radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+               radial-gradient(circle at 60% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 50%)`,
+              `radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+               radial-gradient(circle at 20% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
+               radial-gradient(circle at 60% 60%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+               radial-gradient(circle at 30% 30%, rgba(16, 185, 129, 0.1) 0%, transparent 50%)`,
+              `radial-gradient(circle at 40% 60%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+               radial-gradient(circle at 60% 40%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
+               radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+               radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%)`,
             ],
           }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 

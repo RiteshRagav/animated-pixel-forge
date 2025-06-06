@@ -2,7 +2,7 @@
 import React, { useCallback } from 'react';
 import Particles from '@tsparticles/react';
 import { loadSlim } from 'tsparticles-slim';
-import type { Container, Engine } from 'tsparticles-engine';
+import type { Engine } from 'tsparticles-engine';
 
 const ParticlesBackground = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -19,7 +19,7 @@ const ParticlesBackground = () => {
             value: "transparent",
           },
         },
-        fpsLimit: 120,
+        fpsLimit: 60,
         interactivity: {
           events: {
             onClick: {
@@ -28,7 +28,7 @@ const ParticlesBackground = () => {
             },
             onHover: {
               enable: true,
-              mode: "repulse",
+              mode: "grab",
             },
             resize: {
               enable: true,
@@ -36,34 +36,47 @@ const ParticlesBackground = () => {
           },
           modes: {
             push: {
-              quantity: 4,
+              quantity: 3,
             },
-            repulse: {
+            grab: {
               distance: 200,
-              duration: 0.4,
+              line_linked: {
+                opacity: 0.8,
+              },
             },
           },
         },
         particles: {
           color: {
-            value: ["#3b82f6", "#8b5cf6", "#06b6d4", "#10b981"],
+            value: ["#3b82f6", "#8b5cf6", "#06b6d4", "#10b981", "#f59e0b"],
           },
           links: {
-            color: "#3b82f6",
-            distance: 150,
+            color: {
+              value: "#3b82f6",
+            },
+            distance: 180,
             enable: true,
-            opacity: 0.2,
-            width: 1,
+            opacity: 0.3,
+            width: 1.5,
+            triangles: {
+              enable: true,
+              opacity: 0.05,
+            },
           },
           move: {
             direction: "none",
             enable: true,
             outModes: {
-              default: "bounce",
+              default: "out",
             },
             random: true,
-            speed: 2,
+            speed: 1.5,
             straight: false,
+            attract: {
+              enable: true,
+              rotateX: 600,
+              rotateY: 1200,
+            },
           },
           number: {
             density: {
@@ -71,13 +84,13 @@ const ParticlesBackground = () => {
               width: 1920,
               height: 1080,
             },
-            value: 80,
+            value: 120,
           },
           opacity: {
-            value: 0.5,
+            value: { min: 0.3, max: 0.8 },
             animation: {
               enable: true,
-              speed: 1,
+              speed: 2,
               sync: false,
             },
           },
@@ -85,12 +98,16 @@ const ParticlesBackground = () => {
             type: "circle",
           },
           size: {
-            value: { min: 1, max: 5 },
+            value: { min: 2, max: 6 },
             animation: {
               enable: true,
-              speed: 2,
+              speed: 3,
               sync: false,
             },
+          },
+          glow: {
+            enable: true,
+            value: 10,
           },
         },
         detectRetina: true,
