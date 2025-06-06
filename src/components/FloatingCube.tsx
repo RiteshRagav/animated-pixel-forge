@@ -2,6 +2,7 @@
 import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Mesh } from 'three';
+import * as THREE from 'three';
 
 interface FloatingCubeProps {
   position: [number, number, number];
