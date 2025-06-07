@@ -3,6 +3,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const CallToActionSection = () => {
+  const handleDownloadResume = () => {
+    const link = document.createElement('a');
+    link.href = '/lovable-uploads/eddf86f5-cfbc-44ee-8efe-79f94c6b9e8d.png';
+    link.download = 'Ritesh_Ragav_Resume.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center px-4 z-10 relative">
       <div className="text-center max-w-4xl mx-auto">
@@ -65,6 +74,7 @@ const CallToActionSection = () => {
           </motion.button>
 
           <motion.button
+            onClick={handleDownloadResume}
             className="group relative px-12 py-6 border-2 border-white/30 rounded-full text-white font-bold text-xl backdrop-blur-sm overflow-hidden"
             whileHover={{ 
               scale: 1.05,
@@ -89,9 +99,9 @@ const CallToActionSection = () => {
           className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto"
         >
           {[
-            { label: "Email", value: "ritesh@example.com", icon: "✉️" },
-            { label: "Phone", value: "+1 (555) 123-4567", icon: "📱" },
-            { label: "Location", value: "Available Worldwide", icon: "🌍" },
+            { label: "Email", value: "frostyluvmac@gmail.com", icon: "✉️" },
+            { label: "Phone", value: "+91 8825526351", icon: "📱" },
+            { label: "Location", value: "Chennai, India", icon: "🌍" },
           ].map((contact, index) => (
             <motion.div
               key={index}
