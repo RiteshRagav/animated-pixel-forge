@@ -1,42 +1,61 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [isWebGLSupported, setIsWebGLSupported] = useState(true);
+
+  useEffect(() => {
+    // Check WebGL support
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    setIsWebGLSupported(!!gl);
+
+    // Handle WebGL context loss
+    if (gl) {
+      canvas.addEventListener('webglcontextlost', (event) => {
+        event.preventDefault();
+        console.warn('WebGL context lost. Some animations may be affected.');
+      }, false);
+    }
+  }, []);
 
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "Modern e-commerce solution with React, Node.js, and Stripe integration",
-      tech: ["React", "Node.js", "MongoDB", "Stripe"],
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
-      color: "from-blue-500 to-cyan-500"
+      title: "Greenden : Natures Elegance",
+      description: "Greenden is a responsive and stylish plant e-commerce frontend website, designed using HTML and Tailwind CSS. This project showcases a beautiful collection of plants for users to explore, search, and potentially purchase (UI mock-up only). It serves as a beginner-friendly frontend project focused on layout design, responsiveness, and visual appeal.",
+      tech: ["HTML", "Tailwind CSS"],
+      image: "/images/greenden.png",
+      color: "from-blue-500 to-cyan-500",
+      link: "https://riteshragav.github.io/Greenden/"
     },
     {
       id: 2,
-      title: "3D Portfolio Website",
-      description: "Interactive 3D portfolio built with Three.js and React",
-      tech: ["React", "Three.js", "GSAP", "WebGL"],
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop",
-      color: "from-purple-500 to-pink-500"
+      title: "Nostra Clothing Website",
+      description: "Nostra is a simple and elegant e-commerce website built using HTML, CSS, and JavaScript. It showcases a collection of products, allows users to explore items, and enhances the shopping experience with interactive features. ✨ Features",
+      tech: ["HTML", "CSS", "JS"],
+      image: "/images/nostra.png",
+      color: "from-purple-500 to-pink-500",
+      link: "https://riteshragav.github.io/Nostra/"
     },
     {
       id: 3,
-      title: "AI Chat Application",
-      description: "Real-time chat app with AI integration and modern UI",
-      tech: ["React", "Socket.io", "OpenAI", "Node.js"],
-      image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop",
-      color: "from-green-500 to-teal-500"
+      title: "🌍 TripVista – A TripAdvisor-Inspired Travel Website Clone",
+      description: "A beautifully crafted front-end clone of TripAdvisor, focused on delivering a clean, responsive, and elegant travel browsing experience. Built entirely with HTML and modern CSS, this project emphasizes stunning design, user-friendly layout, and device adaptability — all without using JavaScript. ✨ Key Features",
+      tech: ["HTML", "CSS"],
+      image: "/images/tripadvisor.png",
+      color: "from-green-500 to-teal-500",
+      link: "https://riteshragav.github.io/TripAdvisorClone/"
     },
     {
       id: 4,
-      title: "Data Visualization Dashboard",
-      description: "Interactive dashboard with real-time charts and analytics",
-      tech: ["React", "D3.js", "Chart.js", "Express"],
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop",
-      color: "from-orange-500 to-red-500"
+      title: "Udemy Clone",
+      description: "A responsive front-end clone of the popular e-learning platform Udemy, built using HTML and CSS . This project is designed to showcase frontend development skills with a clean UI and structured layout, ideal for practicing modern web design principles.",
+      tech: ["HTML", "CSS"],
+      image: "/images/udemy-instructor.jpg",
+      color: "from-orange-500 to-red-500",
+      link: "https://riteshragav.github.io/udemy-clone1/"
     },
   ];
 
@@ -53,7 +72,7 @@ const ProjectsSection = () => {
             Featured <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Projects</span>
           </h2>
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            A showcase of my recent work spanning web development, 3D graphics, and AI integration
+            A showcase of my recent work using HTML, CSS, and JavaScript
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-500 mx-auto rounded-full mt-6" />
         </motion.div>
@@ -70,7 +89,7 @@ const ProjectsSection = () => {
               onHoverEnd={() => setSelectedProject(null)}
             >
               <motion.div
-                className="relative bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 overflow-hidden"
+                className="relative bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 overflow-hidden cursor-pointer"
                 whileHover={{ 
                   scale: 1.02,
                   rotateY: 5,
@@ -79,6 +98,7 @@ const ProjectsSection = () => {
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 style={{ transformStyle: "preserve-3d" }}
+                onClick={() => window.open(project.link, '_blank', 'noopener,noreferrer')}
               >
                 {/* Project Image */}
                 <div className="relative h-48 md:h-56 overflow-hidden">
@@ -100,18 +120,11 @@ const ProjectsSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center"
+                        className="absolute inset-0 bg-black/50 flex items-center justify-center"
                       >
-                        <motion.button
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          exit={{ scale: 0 }}
-                          className="px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-white/90 transition-colors"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          View Project
-                        </motion.button>
+                        <div className="text-white text-lg font-semibold">
+                          Click to View Project
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -157,26 +170,6 @@ const ProjectsSection = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* View All Projects Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="text-center mt-12"
-        >
-          <motion.button
-            className="px-8 py-4 bg-gradient-to-r from-blue-500/20 to-purple-600/20 border border-white/20 rounded-full text-white font-semibold text-lg backdrop-blur-lg"
-            whileHover={{ 
-              scale: 1.05,
-              backgroundColor: "rgba(59, 130, 246, 0.1)",
-              borderColor: "rgba(255, 255, 255, 0.4)"
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            View All Projects →
-          </motion.button>
-        </motion.div>
       </div>
     </div>
   );

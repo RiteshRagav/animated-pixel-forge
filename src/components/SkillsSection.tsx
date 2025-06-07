@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -10,14 +9,11 @@ const SkillsSection = () => {
   }, []);
 
   const skills = [
-    { name: "React & Next.js", level: 95, color: "from-blue-400 to-blue-600", icon: "⚛️" },
+    { name: "React & Next.js", level: 32, color: "from-blue-400 to-blue-600", icon: "⚛️" },
     { name: "Node.js & Express", level: 90, color: "from-green-400 to-green-600", icon: "🟢" },
-    { name: "Three.js & WebGL", level: 85, color: "from-purple-400 to-purple-600", icon: "🎮" },
-    { name: "TypeScript", level: 88, color: "from-blue-500 to-indigo-600", icon: "📘" },
-    { name: "Python & AI/ML", level: 80, color: "from-yellow-400 to-orange-500", icon: "🐍" },
-    { name: "Database Design", level: 85, color: "from-cyan-400 to-teal-600", icon: "🗄️" },
-    { name: "UI/UX Design", level: 75, color: "from-pink-400 to-rose-600", icon: "🎨" },
-    { name: "DevOps & Cloud", level: 78, color: "from-gray-400 to-slate-600", icon: "☁️" },
+    { name: "Three.js & WebGL", level: 10, color: "from-purple-400 to-purple-600", icon: "🎮" },
+    { name: "TypeScript", level: 20, color: "from-blue-500 to-indigo-600", icon: "📘" },
+    { name: "Python & AI/ML", level: 10, color: "from-yellow-400 to-orange-500", icon: "🐍" }
   ];
 
   const Counter = ({ target, suffix = "" }: { target: number; suffix?: string }) => {
@@ -132,12 +128,10 @@ const SkillsSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6"
+          className="grid grid-cols-2 md:grid-cols-2 gap-6"
         >
           {[
-            { number: 500, suffix: "+", label: "Commits This Year", icon: "💻" },
-            { number: 15, suffix: "", label: "Technologies Mastered", icon: "🛠️" },
-            { number: 98, suffix: "%", label: "Code Quality Score", icon: "⭐" },
+            { number: 7, suffix: "", label: "Commits This Year", icon: "💻" },
             { number: 24, suffix: "/7", label: "Learning New Tech", icon: "📚" },
           ].map((stat, index) => (
             <motion.div
@@ -170,7 +164,7 @@ const SkillsSection = () => {
               >
                 <Counter target={stat.number} suffix={stat.suffix} />
               </motion.div>
-              <div className="text-white/70 text-sm">{stat.label}</div>
+              <div className="text-white/70 text-sm mt-1">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>

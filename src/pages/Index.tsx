@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import HeroSection from '../components/HeroSection';
@@ -50,7 +49,7 @@ const Index = () => {
   const CurrentComponent = sections[currentSection].component;
 
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden">
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-slate-900 to-blue-900 text-white overflow-y-auto">
       <ParticlesBackground />
       
       <Navigation 

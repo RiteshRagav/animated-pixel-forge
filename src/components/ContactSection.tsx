@@ -1,6 +1,6 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -34,6 +34,27 @@ const ContactSection = () => {
       [e.target.name]: e.target.value
     }));
   };
+
+  const socialLinks = [
+    {
+      name: 'Email',
+      icon: Mail,
+      url: 'mailto:frostyluvmac@gmail.com',
+      color: 'hover:text-red-400'
+    },
+    {
+      name: 'GitHub',
+      icon: Github,
+      url: 'https://github.com/your-username',
+      color: 'hover:text-gray-400'
+    },
+    {
+      name: 'LinkedIn',
+      icon: Linkedin,
+      url: 'https://linkedin.com/in/your-username',
+      color: 'hover:text-blue-400'
+    }
+  ];
 
   return (
     <div className="min-h-screen py-20 px-4 z-10 relative">
@@ -190,101 +211,29 @@ const ContactSection = () => {
               </p>
             </div>
 
-            <div className="space-y-6">
-              {[
-                {
-                  icon: "📧",
-                  label: "Email",
-                  value: "ritesh.ragav@example.com",
-                  link: "mailto:ritesh.ragav@example.com"
-                },
-                {
-                  icon: "📱",
-                  label: "Phone",
-                  value: "+1 (555) 123-4567",
-                  link: "tel:+15551234567"
-                },
-                {
-                  icon: "🌐",
-                  label: "Website",
-                  value: "www.riteshragav.dev",
-                  link: "https://www.riteshragav.dev"
-                },
-                {
-                  icon: "📍",
-                  label: "Location",
-                  value: "Available Worldwide",
-                  link: null
-                }
-              ].map((contact, index) => (
-                <motion.div
-                  key={index}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center"
+            >
+              {socialLinks.map((link, index) => (
+                <motion.a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                  className="flex items-center space-x-4 p-4 bg-white/5 backdrop-blur-lg rounded-xl border border-white/10"
-                  whileHover={{ 
-                    scale: 1.02,
-                    backgroundColor: "rgba(255,255,255,0.1)",
-                    borderColor: "rgba(59, 130, 246, 0.5)"
-                  }}
+                  transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                  className={`flex flex-col items-center p-6 bg-white/5 backdrop-blur-lg rounded-xl border border-white/10 ${link.color} transition-colors duration-300 w-full`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <motion.div
-                    className="text-2xl"
-                    animate={{ 
-                      rotate: [0, 10, -10, 0],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    {contact.icon}
-                  </motion.div>
-                  <div>
-                    <h4 className="text-blue-400 font-semibold">{contact.label}</h4>
-                    {contact.link ? (
-                      <a 
-                        href={contact.link}
-                        className="text-white/80 hover:text-white transition-colors"
-                      >
-                        {contact.value}
-                      </a>
-                    ) : (
-                      <p className="text-white/80">{contact.value}</p>
-                    )}
-                  </div>
-                </motion.div>
+                  <link.icon className="w-8 h-8 mb-3" />
+                  <span className="text-white/80">{link.name}</span>
+                </motion.a>
               ))}
-            </div>
-
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
-              className="pt-6"
-            >
-              <h4 className="text-white font-semibold mb-4">Follow Me</h4>
-              <div className="flex space-x-4">
-                {[
-                  { name: "GitHub", icon: "🐙", link: "#" },
-                  { name: "LinkedIn", icon: "💼", link: "#" },
-                  { name: "Twitter", icon: "🐦", link: "#" },
-                  { name: "Instagram", icon: "📸", link: "#" },
-                ].map((social, index) => (
-                  <motion.a
-                    key={social.name}
-                    href={social.link}
-                    className="w-12 h-12 bg-white/10 backdrop-blur-lg border border-white/20 rounded-full flex items-center justify-center text-xl hover:bg-white/20 transition-colors"
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 1.4 + index * 0.1 }}
-                  >
-                    {social.icon}
-                  </motion.a>
-                ))}
-              </div>
             </motion.div>
           </motion.div>
         </div>
